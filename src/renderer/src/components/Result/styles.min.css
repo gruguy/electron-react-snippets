@@ -1,0 +1,1 @@
+.main{@apply bg-slate-50 p-3 pt-0 -mt-[5px] rounded-bl-lg rounded-br-lg}.main .item{@apply text-slate-700 truncate mb-2}.main .item.active{@apply bg-orange-600}.main .item.active span{@apply text-white}

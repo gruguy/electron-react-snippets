@@ -1,0 +1,15 @@
+body {
+  @apply h-[100vh];
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+
+.nodrag,
+input,
+select,
+textarea,
+option {
+  -webkit-app-region: no-drag;
+}
