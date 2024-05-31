@@ -1,10 +1,18 @@
 import { SettingTwo } from '@icon-park/react'
 import useSearch from '@renderer/hooks/useSearch'
 import { Input } from 'antd'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export default function Search(): JSX.Element {
   const { search, handleSearch } = useSearch()
+  window.api.openConfigWindow()
+  useEffect(() => {
+    async function fetchData() {
+      const res = await window.api.sql('select * from contents', 'findAll')
+      console.log(res)
+    }
+    fetchData()
+  }, [])
   return (
     <main className="bg-slate-50 p-3 drag rounded-lg">
       <section className="bg-slate-200 p-3 rounded-lg flex items-center cursor-pointer">

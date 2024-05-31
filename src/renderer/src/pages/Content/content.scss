@@ -1,0 +1,27 @@
+.content-page {
+  @apply p-4 overflow-y-auto no-scrollbar;
+  h1 {
+    @apply text-lg pb-5;
+  }
+  h3 {
+    @apply border-b;
+  }
+  input,
+  select,
+  textarea {
+    border: none;
+    @apply bg-transparent w-full;
+    resize: none;
+    outline: none;
+    overflow: auto;
+  }
+  select {
+    @apply py-4;
+  }
+  textarea {
+    height: 600px;
+  }
+  .content {
+    @apply pt-4;
+  }
+}

@@ -1,6 +1,7 @@
 export interface DataType {
   id: number
   content: string
+  title: string
 }
 export const codes = [
   {

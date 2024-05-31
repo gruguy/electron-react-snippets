@@ -1,0 +1,31 @@
+.category-page {
+  @apply w-screen h-screen bg-slate-100;
+  display: grid;
+  grid-template:
+    'category content' auto
+    'nav content' 40px/150px auto;
+  .content {
+    grid-area: content;
+  }
+  .categories {
+    @apply border-r overflow-y-auto no-scrollbar;
+    grid-area: category;
+    a,
+    .item {
+      @apply cursor-pointer  p-2 hover:bg-slate-200 flex items-center gap-1 truncate;
+      &.active {
+        @apply bg-purple-400 text-white rounded m-2;
+      }
+      &.first.active {
+        @apply bg-orange-600;
+      }
+    }
+  }
+  .nav {
+    @apply border-t border-r flex items-center justify-center gap-4;
+    grid-area: nav;
+    span {
+      @apply cursor-pointer hover:bg-slate-200 p-2;
+    }
+  }
+}

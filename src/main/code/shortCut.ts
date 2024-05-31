@@ -30,7 +30,7 @@ export const registerShortCut = (win: BrowserWindow) => {
       win.isVisible() ? win.hide() : win.show()
     })
     if (!ret) {
-      dialog.showErrorBox('温馨提示', '请检查是否重复注册或输入错误')
+      // dialog.showErrorBox('温馨提示', '请检查是否重复注册或输入错误')
     }
   }
   // 检查快捷键是否注册成功

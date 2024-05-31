@@ -16,9 +16,10 @@ export function createWindow(): BrowserWindow {
     frame: false,
     // resizable: false,
     transparent: true,
-    show: false,
-    alwaysOnTop: true,
+    // show: false,
+    // alwaysOnTop: true,
     hasShadow: true,
+    maximizable: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -29,6 +30,21 @@ export function createWindow(): BrowserWindow {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+  })
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.insertCSS(`
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: transparent;
+      }
+      .shadow {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+    `)
   })
   // ipc.registerIpc(mainWindow)
 

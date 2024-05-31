@@ -2,24 +2,26 @@ import { BrowserWindow, screen, shell } from 'electron'
 import icon from '../../../resources/icon.png?asset'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
+import url from 'node:url'
 // import * as ipc from './ipc'
 
 export function createWindow(): BrowserWindow {
   // const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 550,
+    width: 1200,
+    height: 850,
     // useContentSize: true,
-    frame: false,
+    frame: true,
     // resizable: false,
-    // transparent: true,
+    transparent: true,
     show: false,
-    alwaysOnTop: true,
+    hasShadow: true,
+    // alwaysOnTop: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      // preload: join(__dirname, '../preload/index.js'),
+      preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
@@ -39,9 +41,17 @@ export function createWindow(): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config/category')
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    // 生产环境需要使用loadURL 才能识别hash值
+    mainWindow.loadURL(
+      url.format({
+        pathname: join(__dirname, '../renderer/index.html'),
+        protocol: 'file:',
+        slashes: true,
+        hash: 'config/category'
+      })
+    )
   }
 
   return mainWindow

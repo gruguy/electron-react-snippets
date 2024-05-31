@@ -1,19 +1,26 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import useCode from './useCode'
-import { codes } from '@renderer/data'
+// import { codes } from '@renderer/data'
 import { useStore } from '@renderer/store/useStore'
+import { apiGetAll } from '@renderer/utils'
 
 export default () => {
   // const { setData } = useCode()
   const { setData, search, setSearch } = useStore((state) => state)
-  // const [search, setSearch] = useState('')
+  const [codes, setCodes] = useState<ContentType[]>([])
+  useEffect(() => {
+    // setData(codes)
+    apiGetAll('contents').then((res) => {
+      setCodes(res)
+    })
+  }, [])
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const content = e.target.value
     setSearch(content)
     setData(
       codes
         .filter((code) =>
-          code.content.toLowerCase().includes(e.target.value.toLowerCase() || '@@@@@')
+          code.title.toLowerCase().includes(e.target.value.toLowerCase() || '@@@@@')
         )
         .splice(0, 4)
     )

@@ -1,0 +1,22 @@
+.contentList-page {
+  @apply h-screen text-xs text-slate-700 gap-2;
+  display: grid;
+  grid-template: 'list content' auto/200px auto;
+  .list {
+    grid-area: list;
+    @apply border-r bg-slate-50 overflow-y-auto no-scrollbar;
+    a {
+      @apply flex justify-between truncate p-3 cursor-pointer border-b;
+
+      &.active {
+        @apply bg-purple-600 text-white rounded m-2;
+      }
+      .title {
+        @apply truncate;
+      }
+    }
+  }
+  .content {
+    grid-area: content;
+  }
+}

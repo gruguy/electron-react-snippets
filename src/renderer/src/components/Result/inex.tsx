@@ -17,7 +17,7 @@ export default function Result(): JSX.Element {
               className={`item ${item.id === id ? 'active' : ''}`}
               onClick={() => selectItem(item.id)}
             >
-              <span className="text-slate-400 mr-2">{item.content}</span>
+              <span className="text-slate-400 mr-2">{item.title}</span>
             </div>
           ))}
         </main>
