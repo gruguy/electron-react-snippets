@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { redirect } from 'react-router-dom'
 
 // Custom APIs for renderer
 const api = {
@@ -12,8 +13,14 @@ const api = {
   setIgnoreMouseEvents: (ignore: boolean, options) => {
     ipcRenderer.send('setIgnoreMouseEvents', ignore, options)
   },
-  openConfigWindow: () => {
-    ipcRenderer.send('openConfigWindow')
+  openConfigWindow: (id: number) => {
+    ipcRenderer.send('openConfigWindow', id)
+  },
+  cid: (fn) => {
+    ipcRenderer.on('cid', (_event, id) => {
+      // setItems(data)
+      fn && fn(id)
+    })
   },
   sql: async (sql: string, type: SqlActionType) => {
     return await ipcRenderer.invoke('sql', sql, type)

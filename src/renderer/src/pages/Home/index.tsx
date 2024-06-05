@@ -18,9 +18,11 @@ function Home(): JSX.Element {
   return (
     // <CodeProvider>
     <React.StrictMode>
-      <main className="p-3 " ref={mainRef}>
-        <Search />
-        <Result />
+      <main className="p-8" ref={mainRef}>
+        <div className="wrapper withShadow  rounded-lg">
+          <Search />
+          <Result />
+        </div>
       </main>
     </React.StrictMode>
     //</CodeProvider>

@@ -3,9 +3,10 @@ import icon from '../../../resources/icon.png?asset'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 import url from 'node:url'
+import { positionWindow } from '../code/shortCut'
 // import * as ipc from './ipc'
 
-export function createWindow(): BrowserWindow {
+export function createWindow(id?: number): BrowserWindow {
   // const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -27,7 +28,13 @@ export function createWindow(): BrowserWindow {
   })
 
   mainWindow.on('ready-to-show', () => {
+    positionWindow(mainWindow, screen)
     mainWindow.show()
+    //
+    // if (id) {
+    //   console.log(id, 'pppppppp')
+    //   mainWindow.webContents.send('cid', id)
+    // }
   })
   // ipc.registerIpc(mainWindow)
 

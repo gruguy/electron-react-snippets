@@ -14,18 +14,19 @@ export interface IContextItem {
 }
 export default function ContentList() {
   const contents = useLoaderData() as ContentType[]
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // const currentCatoryId = useStore((state) => state.currentCategoryId)
   // const params = useParams()
 
-  // useEffect(() => {
-  //   // console.log(contents, 'contents')
-  //   const cid = Number(params.cid) || 0
-  //   // 默认选中第一个
-  //   if (contents.length) {
-  //   navigate(`/config/category/contentList`)
-  //   }
-  // }, [contents])
+  // const [cid, setCid] = useState(0)
+  useEffect(() => {
+    // console.log(contents, 'contents')
+    window.api.cid((id) => {
+      // setCid(id)
+      navigate(`/config/category/contentList/0/content/${id}`)
+    })
+  }, [contents])
+
   const [openMenu, setOpenMenu] = useState(false)
   const [contextData, setContextData] = useState<IContextItem[]>()
   const [x, setX] = useState<number>()

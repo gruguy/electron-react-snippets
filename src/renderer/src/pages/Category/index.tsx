@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLoaderData, useNavigate, useSubmit } from 'react-router-dom'
+import { NavLink, Outlet, redirect, useLoaderData, useNavigate, useSubmit } from 'react-router-dom'
 import './category.scss'
 import {
   AddThree,
@@ -15,12 +15,18 @@ import ContextMenu from '@renderer/components/ContextMenu'
 export default function Category() {
   const categories = useLoaderData() as CategoryType[]
   const navigate = useNavigate()
+  const [items, setItems] = useState(categories)
+
   useEffect(() => {
     // 默认选中第一个
     if (categories.length) {
       navigate(`/config/category/contentList`)
     }
   }, []) //不要传入 categories 作为依赖，这样会导致 navigate 重复执行
+  // 通过依赖categories 变化，更新 items
+  useEffect(() => {
+    setItems(categories)
+  }, [categories])
 
   const [openMenu, setOpenMenu] = useState(false)
   const [contextData, setContextData] = useState<IContextItem[]>()
@@ -38,7 +44,9 @@ export default function Category() {
   }
   const submit = useSubmit()
 
-  const [items, setItems] = useState(categories)
+  // useEffect(() => {
+  // }, [items])
+
   const [editingIndex, setEditingIndex] = useState(-1)
   document.body.addEventListener('click', (e) => {
     if (openMenu) {
@@ -67,7 +75,7 @@ export default function Category() {
           <span>未分类</span>
         </NavLink>
         <Divider className="my-[8px]" />
-        {categories.map((category, index) => {
+        {items.map((category, index) => {
           return (
             <div
               key={category.id}

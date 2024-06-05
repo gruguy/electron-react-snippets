@@ -3,7 +3,7 @@
   .item {
     @apply text-slate-700 truncate mb-2;
     &.active {
-      @apply bg-orange-600;
+      @apply bg-purple-500;
       span {
         @apply text-white;
       }

@@ -19,7 +19,9 @@
     @apply py-4;
   }
   textarea {
-    height: 600px;
+    @apply text-[16px] leading-6;
+    // height: 600px;
+    height: calc(100vh - 150px);
   }
   .content {
     @apply pt-4;

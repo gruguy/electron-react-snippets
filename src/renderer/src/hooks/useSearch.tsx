@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import useCode from './useCode'
 // import { codes } from '@renderer/data'
 import { useStore } from '@renderer/store/useStore'
@@ -7,7 +7,9 @@ import { apiGetAll } from '@renderer/utils'
 export default () => {
   // const { setData } = useCode()
   const { setData, search, setSearch } = useStore((state) => state)
+  // const {search} =
   const [codes, setCodes] = useState<ContentType[]>([])
+
   useEffect(() => {
     // setData(codes)
     apiGetAll('contents').then((res) => {

@@ -7,7 +7,8 @@ declare global {
       hideWindow: () => void
       shortCut: (type: string, shortCut: string) => void
       setIgnoreMouseEvents: (ignore: boolean, options?: { forward: boolean }) => void
-      openConfigWindow: () => void
+      openConfigWindow: (id?: number) => void
+      cid: (fn: (id: number) => void) => void
       sql: <T>(sql: string, type: SqlActionType) => Promise<T>
     }
   }

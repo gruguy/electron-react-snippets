@@ -6,7 +6,7 @@ export const registerIpc = (win: BrowserWindow) => {
     // const win = BrowserWindow.fromWebContents(event.sender)
     win.hide()
   })
-  ipcMain.on('openConfigWindow', () => {
-    createConfigWindow()
+  ipcMain.on('openConfigWindow', (_event, id: number) => {
+    createConfigWindow(id)
   })
 }

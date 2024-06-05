@@ -45,7 +45,7 @@ export const apiDel = (tablename: string, id: number) => {
   return window.api.sql(`DELETE FROM ${tablename} WHERE id = ${id}`, 'del')
 }
 
-export function debounce(func: void, wait: number = 500, immediate: boolean = true) {
+export function debounce(func, wait: number = 500, immediate: boolean = true) {
   let timer: string | number | NodeJS.Timeout | undefined | null
   return function (...args) {
     // 如果存在定时器，则还处在等待期间，则清除定时器，重新开始计算时间

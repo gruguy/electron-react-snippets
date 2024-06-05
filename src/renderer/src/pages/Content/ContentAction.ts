@@ -4,7 +4,6 @@ export default async ({ request, params }) => {
   // return
   const { id } = params
   const formData = await request.formData()
-  console.log(formData.get('category_id'), 'formData')
   switch (formData.get('action')) {
     case 'update':
       {
