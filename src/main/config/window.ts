@@ -30,11 +30,24 @@ export function createWindow(id?: number): BrowserWindow {
   mainWindow.on('ready-to-show', () => {
     positionWindow(mainWindow, screen)
     mainWindow.show()
-    //
-    // if (id) {
-    //   console.log(id, 'pppppppp')
-    //   mainWindow.webContents.send('cid', id)
-    // }
+  })
+  let closeTimer
+  mainWindow.on('blur', () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+    }
+    // 设置一个计时器，比如5秒后关闭窗口
+    closeTimer = setTimeout(() => {
+      if (BrowserWindow.getFocusedWindow() !== mainWindow) {
+        mainWindow.close()
+      }
+    }, 5000) // 5000 毫秒 = 5 秒
+  })
+  mainWindow.on('focus', () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer)
+      closeTimer = null
+    }
   })
   // ipc.registerIpc(mainWindow)
 

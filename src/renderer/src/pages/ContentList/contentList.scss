@@ -3,6 +3,7 @@
   display: grid;
   grid-template: 'list content' auto/200px auto;
   .list {
+    padding-top: 40px;
     grid-area: list;
     @apply border-r bg-slate-50 overflow-y-auto no-scrollbar;
     a {
@@ -14,6 +15,13 @@
       .title {
         @apply truncate;
       }
+    }
+    .search-wrapper {
+      @apply border-b flex items-center justify-center gap-2 leading-[40px] bg-slate-100 hover:bg-slate-200 cursor-pointer;
+      position: fixed;
+      width: 200px;
+      padding-bottom: 0;
+      top: 0;
     }
   }
   .content {

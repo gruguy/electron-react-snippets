@@ -1,0 +1,15 @@
+.setting-page {
+  @apply bg-slate-100 h-screen;
+  h1 {
+    @apply text-sm font-bold flex items-center justify-center h-10;
+  }
+  section {
+    @apply bg-white p-4 m-2;
+    h3 {
+      @apply text-sm pb-2;
+    }
+    input {
+      @apply border w-full p-2;
+    }
+  }
+}

@@ -19,7 +19,7 @@ export default async ({ request, params }) => {
       )
       return {}
 
-      // return redirect(`content/${id}`)
+      // return redirect(`content`)
     }
 
     default:

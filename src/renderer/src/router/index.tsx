@@ -11,6 +11,9 @@ import CategoryAction from '@renderer/pages/Category/CategoryAction'
 import ContentListAction from '@renderer/pages/ContentList/ContentListAction'
 import Welcome from '@renderer/pages/Welcome'
 import ContentAction from '@renderer/pages/Content/ContentAction'
+import Setting from '@renderer/pages/Config/Setting'
+import SettingAction from '@renderer/pages/Config/Setting/SettingAction'
+import SettingLoader from '@renderer/pages/Config/Setting/SettingLoader'
 
 const router = createHashRouter([
   {
@@ -21,6 +24,12 @@ const router = createHashRouter([
     path: '/config',
     element: <Config />,
     children: [
+      {
+        index: true,
+        element: <Setting />,
+        action: SettingAction,
+        loader: SettingLoader
+      },
       {
         path: 'category',
         element: <Category />,

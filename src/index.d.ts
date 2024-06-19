@@ -20,3 +20,15 @@ interface IContextItem {
   icon: ReactElement
   onClick?: () => void
 }
+
+type WindowNameType = 'search' | 'config'
+
+type ConfigType = {
+  id: number
+  content: string
+}
+
+type ConfigDataType = {
+  shorCut: string
+  directory: string
+}

@@ -1,6 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import { redirect } from 'react-router-dom'
 
 // Custom APIs for renderer
 const api = {
@@ -8,7 +7,7 @@ const api = {
     ipcRenderer.send('hideWindow')
   },
   shortCut: (type: string, shortCut: string) => {
-    ipcRenderer.send('shortCut', type, shortCut)
+    ipcRenderer.invoke('shortCut', type, shortCut)
   },
   setIgnoreMouseEvents: (ignore: boolean, options) => {
     ipcRenderer.send('setIgnoreMouseEvents', ignore, options)
@@ -22,8 +21,15 @@ const api = {
       fn && fn(id)
     })
   },
-  sql: async (sql: string, type: SqlActionType) => {
-    return await ipcRenderer.invoke('sql', sql, type)
+  sql: async (sql: string, type: SqlActionType, params = {}) => {
+    return await ipcRenderer.invoke('sql', sql, type, params)
+  },
+  openWindow: (name: WindowNameType) => {
+    console.log(name)
+    ipcRenderer.send('openWindow', name)
+  },
+  closeWindow: (name: WindowNameType) => {
+    ipcRenderer.send('closeWindow', name)
   }
 }
 

@@ -3,13 +3,13 @@ import { createWindow } from './window'
 
 let win = null as null | BrowserWindow
 const createConfigWindow = (id: number) => {
-  console.log(id, 'fdfdffd')
   if (!win) {
     win = createWindow()
   } else {
     win.show()
   }
   console.log(win, 'windiwsssssss')
+
   if (id) {
     console.log(win, 'winwin')
     console.log(id, '+id!@@@@@')

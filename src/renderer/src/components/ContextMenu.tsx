@@ -3,7 +3,7 @@ export default function ContextMenu({ show = false, x = 0, y = 0, data }) {
   if (show)
     return (
       <main
-        className="cursor-pointer absolute"
+        className="cursor-pointer absolute z-50"
         style={{ display: show ? 'block' : 'none', left: x + 'px', top: y + 'px' }}
       >
         {data

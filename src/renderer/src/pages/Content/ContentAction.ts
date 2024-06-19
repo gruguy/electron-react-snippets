@@ -6,15 +6,19 @@ export default async ({ request, params }) => {
   const formData = await request.formData()
   switch (formData.get('action')) {
     case 'update':
+      // 修改标题和内容因为不可控内容可能会导致sql注入以及报错，所以需要使用预处理语言
       {
-        console.log(formData.get('title'), formData.get('content'), 'formData')
         if (formData.get('title')) {
-          const title = formData.get('title').replaceAll("'", '"')
-          window.api.sql(`update contents set title = '${title}' where id = ${id}`, 'update')
+          window.api.sql(`update contents set title = @title where id = @id`, 'update', {
+            title: formData.get('title'),
+            id: id
+          })
         }
         if (formData.get('content')) {
-          const content = formData.get('content').replaceAll("'", '"')
-          window.api.sql(`update contents set content = '${content}' where id = ${id}`, 'update')
+          window.api.sql(`update contents set content = @content where id = @id`, 'update', {
+            content: formData.get('content'),
+            id: id
+          })
         }
       }
 

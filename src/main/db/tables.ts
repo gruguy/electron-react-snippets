@@ -19,13 +19,14 @@ db.exec(`
   )
 `)
 
-// db.exec(`
-//     INSERT INTO categories(name, created_at)
-//     SELECT '默认分组',  datetime('now')
-//     WHERE NOT EXISTS (
-//         SELECT 1 FROM categories
-//     );
-// `)
+db.exec(`
+  create table if not exists config(
+    id INTEGER primary key autoincrement not null,
+    content text not null
+  )
+`)
+
+db.exec(`INSERT INTO config (content) VALUES('{}')`)
 
 // db.exec(`
 //    INSERT INTO contents(title, content, category_id, created_at)

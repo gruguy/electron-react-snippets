@@ -48,7 +48,7 @@ export default function Search(): JSX.Element {
   return (
     <main className="bg-slate-50 p-3 drag  rounded-lg">
       <section className="bg-slate-200 p-3 rounded-lg flex items-center cursor-pointer">
-        <div className="mr-2 cursor-pointer nodrag" onClick={() => window.api.openConfigWindow()}>
+        <div className="mr-2 cursor-pointer nodrag" onClick={() => window.api.openWindow('config')}>
           <SettingTwo className="cursor-pointer" theme="outline" size="30" fill="#333" />
         </div>
         <Input

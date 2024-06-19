@@ -19,6 +19,10 @@
       &.first.active {
         @apply bg-orange-600;
       }
+      &.drag-over {
+        @apply bg-slate-400;
+      }
+      -webkit-user-drag: none;
     }
   }
   .nav {
@@ -26,6 +30,10 @@
     grid-area: nav;
     span {
       @apply cursor-pointer hover:bg-slate-200 p-2;
+    }
+    a {
+      display: inline-flex;
+      line-height: 36px;
     }
   }
 }

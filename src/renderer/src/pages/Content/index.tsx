@@ -2,7 +2,6 @@ import { Form, useLoaderData, useSubmit } from 'react-router-dom'
 import './content.scss'
 import { useEffect, useRef, useState } from 'react'
 import { debounce } from '@renderer/utils'
-import { Input } from 'antd'
 export default function Content() {
   interface ContentLoaderType {
     data: ContentType
@@ -85,6 +84,7 @@ export default function Content() {
 
           <h3>
             <select
+              value={rdata.category_id}
               onChange={(e) =>
                 submit({ action: 'changeType', category_id: e.target.value }, { method: 'POST' })
               }
